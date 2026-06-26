@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Launch Control</title>
+    <title>Autorizacion de Cohetes</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -47,13 +47,13 @@
                             <label class="form-label text-white">
                                 Nombre del Cohete
                             </label>
-                            <input id="Nombre" type="text" class="form-control" placeholder="Ej. Falcon Heavy">
+                            <input id="Nombre" type="text" class="form-control" placeholder="Ej. Falcon Heavy" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label text-white">
                                 Agencia Espacial
                             </label>
-                            <input id="Agencia" type="text" class="form-control" placeholder="Ej. NASA">
+                            <input id="Agencia" type="text" class="form-control" placeholder="Ej. NASA" required>
                         </div>
                     </div>
                     <div class="row">
@@ -61,14 +61,13 @@
                             <label class="form-label text-white">
                                 Misión
                             </label>
-                            <input id="Mision" type="text" class="form-control" placeholder="Ej. Exploración Lunar">
+                            <input id="Mision" type="text" class="form-control" placeholder="Ej. Exploración Lunar" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label">
                                 Combustible
                             </label>
                             <select id="Combustible" class="form-select">
-                                <option selected>Seleccionar...</option>
                                 <option value="Hidrógeno">Hidrógeno</option>
                                 <option value="Oxigeno Liquido">Oxígeno Líquido</option>
                                 <option value="Metano">Metano</option>
@@ -77,7 +76,7 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <button id="Registrar" class="btn btn-primary btn-lg">
+                        <button id="Registrar" class="btn btn-primary btn-lg" type="submit">
                             <i class="bi bi-plus-circle"></i>
                             Registrar Cohete
                         </button>
@@ -96,27 +95,13 @@
         <div class="row g-4">
             <!-- COHETE EN DESPEGUE -->
             <div class="col-lg-6 d-flex justify-content-evenly">
-                <div class="col-5">
+                <div id="contenedorDespegue" class="col-5 d-none">
                     <div class="card h-100">
                         <div class="card-header">
                             🚀 Cohete en Despegue
                         </div>
                         <div id="coheteDespegando" class="card-body text-white">
-                            <!-- <h3>Artemis I</h3>
-                            <p>
-                                <strong>Agencia:</strong> NASA
-                            </p>
-                            <p>
-                                <strong>Misión:</strong> Exploración Lunar
-                            </p>
-                            <p>
-                                <strong>Combustible:</strong> Hidrógeno Líquido
-                            </p>
-                            <hr>
-                            <p class="status">
-                                <i class="bi bi-broadcast"></i>
-                                Estado: DESPEGANDO...
-                            </p> -->
+                            <p>No hay cohete autorizado</p>
                         </div>
                     </div>
                 </div>
@@ -126,20 +111,7 @@
                             🚀 Cohete siguiente
                         </div>
                         <div id="coheteSiguiente" class="card-body text-white">
-                            <!-- <h3>Artemis I</h3>
-                            <p>
-                                <strong>Agencia:</strong> NASA
-                            </p>
-                            <p>
-                                <strong>Misión:</strong> Exploración Lunar
-                            </p>
-                            <p>
-                                <strong>Combustible:</strong> Hidrógeno Líquido
-                            </p>
-                            <hr>
-                            <p class="status">
-                                Estado: Pendiente...
-                            </p> -->
+                            <p>NO hay cohetes en fila</p>
                         </div>
                     </div>
                 </div>
@@ -151,19 +123,8 @@
                         ⏳ Cola de Cohetes Pendientes
                     </div>
                     <div class="card-body">
-                        <ul id="contenedorLista" class="list-group">
-                            <!-- <li class="list-group-item">
-                                🚀 Falcon Heavy
-                            </li>
-                            <li class="list-group-item">
-                                🚀 Starship
-                            </li>
-                            <li class="list-group-item">
-                                🚀 New Glenn
-                            </li>
-                            <li class="list-group-item">
-                                🚀 Electron
-                            </li> -->
+                        <ul id="contenedorLista" class="list-group text-white">
+                            <p>Aun no hay cohetes en fila</p>
                         </ul>
                     </div>
                 </div>
@@ -181,52 +142,14 @@
                             <th>Cohete</th>
                             <th>Agencia</th>
                             <th>Misión</th>
+                            <th>No. Autorizacion</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody id="contenedorHistorial">
-                        <tr>
-                            <td>Apollo XI</td>
-                            <td>NASA</td>
-                            <td>Llegada a la Luna</td>
-                            <td>
-                                <span class="badge bg-success">
-                                    Completado
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Falcon 9</td>
-                            <td>SpaceX</td>
-                            <td>Satélites Starlink</td>
-                            <td>
-                                <span class="badge bg-success">
-                                    Completado
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Voyager I</td>
-                            <td>NASA</td>
-                            <td>Exploración Espacial</td>
-                            <td>
-                                <span class="badge bg-success">
-                                    Completado
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Starship</td>
-                            <td>SpaceX</td>
-                            <td>Misión a Marte</td>
-                            <td>
-                                <span class="badge bg-warning text-dark">
-                                    Pendiente
-                                </span>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
+                <p id="mensaje" class="text-white">No hay nada en el historial</p>
             </div>
         </div>
     </div>
