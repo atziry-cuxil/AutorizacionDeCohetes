@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Launch Control</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-rocket-takeoff-fill"></i>
+                Space Launch Control
+            </a>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <!-- TITULO -->
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold">
+                🚀 Centro de Control Espacial
+            </h1>
+            <p class="text-light">
+                Gestión de Registro y Despegue de Cohetes
+            </p>
+        </div>
+        <!-- FORMULARIO -->
+        <div class="card mb-5">
+            <div class="card-header">
+                <i class="bi bi-pencil-square"></i>
+                Registrar Nuevo Cohete
+            </div>
+            <div class="card-body">
+                <form id="formulario">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-white">
+                                Nombre del Cohete
+                            </label>
+                            <input id="Nombre" type="text" class="form-control" placeholder="Ej. Falcon Heavy">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-white">
+                                Agencia Espacial
+                            </label>
+                            <input id="Agencia" type="text" class="form-control" placeholder="Ej. NASA">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label text-white">
+                                Misión
+                            </label>
+                            <input id="Mision" type="text" class="form-control" placeholder="Ej. Exploración Lunar">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">
+                                Combustible
+                            </label>
+                            <select id="Combustible" class="form-select">
+                                <option selected>Seleccionar...</option>
+                                <option value="Hidrógeno">Hidrógeno</option>
+                                <option value="Oxigeno Liquido">Oxígeno Líquido</option>
+                                <option value="Metano">Metano</option>
+                                <option value="Queroseno RP-1">Queroseno RP-1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <button id="Registrar" class="btn btn-primary btn-lg">
+                            <i class="bi bi-plus-circle"></i>
+                            Registrar Cohete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- BOTON DESPEGUE -->
+        <div class="text-center mb-5">
+            <button id="Autorizar" class="btn btn-success btn-lg px-5">
+                <i class="bi bi-rocket-takeoff-fill"></i>
+                Autorizar Siguiente Despegue
+            </button>
+        </div>
+        <!-- COHETE Y COLA -->
+        <div class="row g-4">
+            <!-- COHETE EN DESPEGUE -->
+            <div class="col-lg-6 d-flex justify-content-evenly">
+                <div class="col-5">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            🚀 Cohete en Despegue
+                        </div>
+                        <div id="coheteDespegando" class="card-body text-white">
+                            <!-- <h3>Artemis I</h3>
+                            <p>
+                                <strong>Agencia:</strong> NASA
+                            </p>
+                            <p>
+                                <strong>Misión:</strong> Exploración Lunar
+                            </p>
+                            <p>
+                                <strong>Combustible:</strong> Hidrógeno Líquido
+                            </p>
+                            <hr>
+                            <p class="status">
+                                <i class="bi bi-broadcast"></i>
+                                Estado: DESPEGANDO...
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            🚀 Cohete siguiente
+                        </div>
+                        <div id="coheteSiguiente" class="card-body text-white">
+                            <!-- <h3>Artemis I</h3>
+                            <p>
+                                <strong>Agencia:</strong> NASA
+                            </p>
+                            <p>
+                                <strong>Misión:</strong> Exploración Lunar
+                            </p>
+                            <p>
+                                <strong>Combustible:</strong> Hidrógeno Líquido
+                            </p>
+                            <hr>
+                            <p class="status">
+                                Estado: Pendiente...
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- COLA -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        ⏳ Cola de Cohetes Pendientes
+                    </div>
+                    <div class="card-body">
+                        <ul id="contenedorLista" class="list-group">
+                            <!-- <li class="list-group-item">
+                                🚀 Falcon Heavy
+                            </li>
+                            <li class="list-group-item">
+                                🚀 Starship
+                            </li>
+                            <li class="list-group-item">
+                                🚀 New Glenn
+                            </li>
+                            <li class="list-group-item">
+                                🚀 Electron
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- HISTORIAL -->
+        <div class="card mt-5">
+            <div class="card-header">
+                📜 Historial de Despegues
+            </div>
+            <div class="card-body">
+                <table class="table table-dark table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Cohete</th>
+                            <th>Agencia</th>
+                            <th>Misión</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenedorHistorial">
+                        <tr>
+                            <td>Apollo XI</td>
+                            <td>NASA</td>
+                            <td>Llegada a la Luna</td>
+                            <td>
+                                <span class="badge bg-success">
+                                    Completado
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Falcon 9</td>
+                            <td>SpaceX</td>
+                            <td>Satélites Starlink</td>
+                            <td>
+                                <span class="badge bg-success">
+                                    Completado
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Voyager I</td>
+                            <td>NASA</td>
+                            <td>Exploración Espacial</td>
+                            <td>
+                                <span class="badge bg-success">
+                                    Completado
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Starship</td>
+                            <td>SpaceX</td>
+                            <td>Misión a Marte</td>
+                            <td>
+                                <span class="badge bg-warning text-dark">
+                                    Pendiente
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center py-4">
+        Space Launch Control © 2026
+    </footer>
+    <script src="./app.js"></script>
+</body>
+
+</html>
