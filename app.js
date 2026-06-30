@@ -125,7 +125,8 @@ class CohetesPendientes {
     pintarLista() {
         let contador = 1;
         let html = ""
-        let actual = { ...this.primero }
+        let actual = this.primero
+
         while (contador <= this.lenght) {
             html += ` <li class="list-group-item">
                         🚀 ${actual.nombre}
@@ -136,7 +137,6 @@ class CohetesPendientes {
         }
         if (html.length == 0) {
             return 'No hay cohetes pendientes'
-            //btnAutorizar.classList.add('d-none')
         }
         return html
     }
@@ -270,7 +270,7 @@ btnAutorizar.addEventListener('click', (event) => {
     coheteDespegando.innerHTML = ''
     coheteSiguiente.innerHTML = ''
     contenedorLista.innerHTML = ''
-    let coheteFuera = { ...registroDeCohetesPendientes.peek2() }
+    let coheteFuera = registroDeCohetesPendientes.peek2()
     if (coheteFuera.nombre != undefined) {
         btnAutorizar.classList.add('d-none')
         contenedorDespegue.classList.remove('d-none')
