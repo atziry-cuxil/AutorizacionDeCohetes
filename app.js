@@ -1,4 +1,10 @@
+let letras = 'acbdefghijklmnñopqrstuvwxyz.1234567890-_'
+
 class Cohete {
+    #nombre;
+    #agencia;
+    #mision;
+
     constructor(nombre, agencia, mision, combustible) {
         this.nombre = nombre;
         this.agencia = agencia;
@@ -7,6 +13,49 @@ class Cohete {
         this.NoAutirizacion = (Math.floor(Math.random() * 10)) + Date.now()
         this.next = null
     }
+
+    set nombre(value) {
+        if (value.trim() == '') {
+            console.log(registroDeCohetesPendientes)
+            alert('Ingrese un nombre valido')
+            throw new Error('Ingrese un nombre valido')
+            this.#nombre = 'anomino'
+        } else {
+            console.log(registroDeCohetesPendientes)
+            return this.#nombre = value
+        }
+    }
+
+    get nombre() {
+        return this.#nombre;
+    }
+
+    set agencia(value) {
+        if (value.trim() == '') {
+            alert('Ingrese un nombre valido')
+            throw new Error('Ingrese un nombre valido')
+        } else {
+            return this.#agencia = value
+        }
+    }
+
+    get agencia() {
+        return this.#agencia;
+    }
+
+    set mision(value) {
+        if (value.trim() == '') {
+            alert('Ingrese un nombre valido')
+            throw new Error('Ingrese un nombre valido')
+        } else {
+            return this.#mision = value
+        }
+    }
+
+    get mision() {
+        return this.#mision;
+    }
+
 }
 
 class CohetesPendientes {
@@ -206,7 +255,7 @@ let btnAutorizar = document.querySelector('#Autorizar')
 
 let trMensaje = document.querySelector('#mensaje')
 
-btnRegistrar.addEventListener('click', (event) => {
+form.addEventListener('submit', (event) => {
     event.preventDefault()
     contenedorHistorial.innerHTML = ''
     contenedorLista.innerHTML = ''
