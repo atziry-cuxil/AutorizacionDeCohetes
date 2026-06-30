@@ -1,5 +1,16 @@
 let letras = 'acbdefghijklmnñopqrstuvwxyz.1234567890-_'
 
+class CoheteTemporal {
+        constructor(nombre, agencia, mision, combustible, autorizacion) {
+        this.nombre = nombre;
+        this.agencia = agencia;
+        this.mision = mision;
+        this.combustible = combustible;
+        this.NoAutirizacion = autorizacion
+        this.next = null
+    }
+}
+
 class Cohete {
     #nombre;
     #agencia;
@@ -21,7 +32,6 @@ class Cohete {
             throw new Error('Ingrese un nombre valido')
             this.#nombre = 'anomino'
         } else {
-            console.log(registroDeCohetesPendientes)
             return this.#nombre = value
         }
     }
@@ -90,7 +100,8 @@ class CohetesPendientes {
     }
 
     peek2() {
-        return this.primero;
+        let temporal = new CoheteTemporal(this.primero.nombre, this.primero.agencia, this.primero.mision, this.primero.combustible, this.primero.NoAutirizacion)
+        return temporal
     }
 
     enqueue(nombre, agencia, mision, combustible) {//agrega al ultimo
@@ -152,6 +163,7 @@ class Historial {//Este podria ser un stack
     }
 
     peek() {
+        console.log(this.primero.nombre)
         if (this.primero.nombre != null) {
 
             let peek = `<h3>${this.primero.nombre}</h3>
@@ -196,7 +208,7 @@ class Historial {//Este podria ser un stack
 
     pintarHistorial() {
         let contador = 1;
-        let actual = { ...this.primero };
+        let actual = this.primero
         let html = ''
         while (contador <= this.lenght) {
             // if (contador == 1) {
